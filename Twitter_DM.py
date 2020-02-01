@@ -1,18 +1,20 @@
 # DM user after they use our hash tag
-
-from twython import Twython
-
-# Gather Credentials
+import tweepy
 credentials = {}
 credentials["consumer_key"] = "7NTFSTNtTxGA76ODLqGIRHCpZ"
 credentials["consumer_secret"] = "7ShuK7g0KtvKlVEECyMAY5E9k5cdNRYTGHb64FAtr9eNzzc5Nf"
-credentials["access_token"] = "1223485018816692224-g6hB4YGbBsBx6p2Yyy2p6pFFiOqgab"
-credentials["access_secret"] = "vBI3EEdxbRFUpqJ7Stxe7O5kcSp6KyGCmdaASmxa00dzW"
+credentials["access_token"] = "1223485018816692224-ye0Kcg3lKg2ZQOXsBliH9ICznSw0UT"
+credentials["access_secret"] = "3vZP5VMwG34vr0t7OeYo0p7ZGhO6fujWYIeGj0eXqhTaa"
+auth = tweepy.OAuthHandler(credentials["consumer_key"], credentials["consumer_secret"])
+auth.set_access_token(credentials["access_token"], credentials["access_secret"])
+api = tweepy.API(auth)
 
-t = Twython(app_key=credentials["consumer_key"],
-            app_secret=credentials["consumer_secret"],
-            oauth_token=credentials["access_token"],
-            oauth_token_secret=credentials["access_secret"]
-            )
+# api.send_direct_message(1054197561463058434, "What are you experiencing?\n1) Fire\n2) Tornado\n"
+                                           #  "3) Flood\n4) Heavy Storm\n5) Hurricane")
 
-t.send_direct_message(user_id="leslie_harvey3", text="testing!")
+messages = api.list_direct_messages()
+
+
+for m in messages:
+    if getattr(m, "message_create")['sender_id'] != 1223485018816692224:
+        print(getattr(m, "message_create")['message_data']["text"])
