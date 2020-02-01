@@ -1,4 +1,4 @@
-# Access hash tags in real time
+# Failed attempt to implement this
 
 import socket
 import sys
