@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "282122105322",
+    "firebase_url": "https://disaster-relief-582e2.firebaseio.com",
+    "project_id": "disaster-relief-582e2",
+    "storage_bucket": "disaster-relief-582e2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:282122105322:android:4a016c0234152ab690c293",
+        "android_client_info": {
+          "package_name": "swamphacks.google_sigin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "282122105322-vd6n7chblaph3p62luouarnm4l553dva.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaLFlm0ZE6CFowepRL8c1HeFl4jsFIm5M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "282122105322-vd6n7chblaph3p62luouarnm4l553dva.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
