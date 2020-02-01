@@ -1,4 +1,4 @@
-package swamphacks.drelief
+package swamphacks.disasterrelief
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

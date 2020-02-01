@@ -1,6 +1,6 @@
-# drelief
+# disasterrelief
 
-Disaster relief
+A new Flutter project.
 
 ## Getting Started
 
