@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:disaster_relief/view/home.dart';
 
 void main() => runApp(MyApp());
 
@@ -45,6 +46,14 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+
+  void _changePage() {
+      navigateToNextPage(context);
+  }
+
+  Future navigateToNextPage(context) async {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(items: List.filled(2, null))));
+  }
 
   void _incrementCounter() {
     setState(() {
@@ -102,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: _changePage,
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
