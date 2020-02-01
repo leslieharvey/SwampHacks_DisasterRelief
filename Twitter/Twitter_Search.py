@@ -1,4 +1,4 @@
-# Function to search information
+# Only use for legacy search
 
 
 def search_twitter(search, login, count=None):
