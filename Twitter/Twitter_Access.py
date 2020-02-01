@@ -1,11 +1,12 @@
 # Twitter search for hash-tags
 import tweepy
+from tweepy import OAuthHandler, Stream, StreamListener
 
 # Twitter Credentials
-ACCESS_TOKEN = "1223485018816692224-g6hB4YGbBsBx6p2Yyy2p6pFFiOqgab"
-ACCESS_SECRET = "vBI3EEdxbRFUpqJ7Stxe7O5kcSp6KyGCmdaASmxa00dzW"
-CONSUMER_KEY = "7NTFSTNtTxGA76ODLqGIRHCpZ"
-CONSUMER_SECRET = "7ShuK7g0KtvKlVEECyMAY5E9k5cdNRYTGHb64FAtr9eNzzc5Nf"
+ACCESS_TOKEN = "1223485018816692224-GaYyuwspGUq8mWPVNInYyVTYCbmiZ9"
+ACCESS_SECRET = "bZ1wtD4JAvw8jX2VOHPuHbEzMdETg2LG2xiGCbZkD6DIq"
+CONSUMER_KEY = "cbzUSbqNfkiEtWNIorVKtl3uj"
+CONSUMER_SECRET = "FAagrzj92MvVBZ2adsnM57Uad9d3S2YDGThAROx0E72kFunnEa"
 
 # Tweepy access
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
@@ -13,17 +14,24 @@ auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
 api = tweepy.API(auth)
 
 
-class StreamListener(tweepy.StreamListener):
-    def on_status(self, status):
-        if status.retweeted_status:
-            return
-        print(status.text)
+class StdOutListener(StreamListener):
+    def on_data(self, data):
+        beg = data.find('"screen_name\":"')
+        last = data.find('","', beg)
+        temp = data[beg:last]
+        final_pos = temp.rindex('":"') + 3
+        final_temp = temp[final_pos:len(temp)]
+        print(final_temp)
+        return True
 
-    def on_error(self, status_code):
-        if status_code == 420:
-            return False
+    def on_error(self, status):
+        print(status)
 
 
-stream_listener = StreamListener()
-stream = tweepy.Stream(auth=api.auth, listener=stream_listener)
-stream.filter(track=["I "])
+if __name__ == '__main__':
+    l = StdOutListener()
+    auth = OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+    auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
+
+    stream = Stream(auth, l)
+    stream.filter(track=["#power2get"])
