@@ -1,11 +1,9 @@
-import 'package:disaster_relief/model/supply.dart';
-
+// import 'package:disaster_relief/model/supply.dart';
 import 'package:flutter/material.dart';
 
 void main() {
   runApp(HomePage(
-     items: List<ListItem>.generate(12, (index) => index % 6 == 0 ? 
-        HeadingText("Heading $index", "Name $index") : 
+     items: List<ListItem>.generate(12, (index) => 
         SupplyItem("Name" , "Description", "Sender", "Cost"),
         )
     ));
@@ -14,6 +12,8 @@ void main() {
 class HomePage extends StatelessWidget {
   final List<ListItem> items; 
 
+  final icons = [Icons.list, Icons.map, Icons.settings, Icons.person];
+  final titles = ['List', 'Map', 'Settings', 'Profile'];
   HomePage({@required this.items}): super();
 
   @override 
@@ -59,6 +59,12 @@ class HomePage extends StatelessWidget {
           itemBuilder: (context, index) {
             final item = items[index]; 
             if (item is HeadingText) {
+              // return Card(
+              //   child: ListTile(
+              //     leading: Icon(icons[index]),
+              //     title: Text(titles[index])
+              //     ),
+              // )
               return ListTile(
                 title: Text( 
                   item.name,
@@ -66,16 +72,33 @@ class HomePage extends StatelessWidget {
                 )
               );
             }
-            if (item is SupplyItem) {
-              return ListTile(
-                title: Text( 
-                  item.name,
-                  style: Theme.of(context).textTheme.headline,
-                )
+            if (item is SupplyItem && index < 4) {
+              return Card(
+                child: ListTile(
+                  leading: Icon(icons[index]),
+                  title: Text(titles[index])
+                  ),
               );
             }
           })
       )
     );
   } 
+}
+
+abstract class ListItem {}
+
+class HeadingText implements ListItem {
+  final String heading;
+  final String name;
+  HeadingText(this.heading, this.name);
+}
+
+class SupplyItem implements ListItem {
+  final String name;
+  final String description; 
+  final String sender;
+  final String cost;
+  // Need Latitude and Longitude for location
+  SupplyItem(this.name, this.description, this.sender, this.cost);
 }

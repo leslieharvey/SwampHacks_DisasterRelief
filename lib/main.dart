@@ -52,7 +52,11 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future navigateToNextPage(context) async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(items: List.filled(2, null))));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(items: 
+      List<ListItem>.generate(12, (index) => 
+        SupplyItem("Name" , "Description", "Sender", "Cost"),
+        )
+    )));
   }
 
   void _incrementCounter() {
