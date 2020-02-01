@@ -9,12 +9,16 @@ auth = tweepy.OAuthHandler(credentials["consumer_key"], credentials["consumer_se
 auth.set_access_token(credentials["access_token"], credentials["access_secret"])
 api = tweepy.API(auth)
 
-# api.send_direct_message(1054197561463058434, "What are you experiencing?\n1) Fire\n2) Tornado\n"
-                                           #  "3) Flood\n4) Heavy Storm\n5) Hurricane")
+api.send_direct_message(1054197561463058434, "What are you experiencing?\n1) Fire\n2) Tornado\n"
+                                             "3) Flood\n4) Heavy Storm\n5) Hurricane")
 
 messages = api.list_direct_messages()
 
-
+response = None
 for m in messages:
     if getattr(m, "message_create")['sender_id'] != 1223485018816692224:
-        print(getattr(m, "message_create")['message_data']["text"])
+        response = getattr(m, "message_create")['message_data']["text"]
+        break
+
+
+
