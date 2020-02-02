@@ -55,8 +55,32 @@ app.delete('/', function (req, res) {
     res.send("HTTP DELETE Request");
 });
 
-var server = app.listen(8080, function () {
+// REST Endpoints for requests
+// Create a new request
+app.post('/requests', function (req, res) {
+    firebase.database().ref('requests/' + req.query.id).set({ 
+      city: req.query.city,
+      state: req.query.state,
+      tags: req.query.tags,
+      text: req.query.text,
+      zip_code: req.query.zip_code
+    })
+    res.send("A new request was created in the DB!");
+});
 
+//Get all requests
+app.get('/requests', function(req, res) {
+    let requestData = firebase.database().ref('requests/').once("value").then(
+        function(snapshot) {
+            let data = snapshot.val();
+            console.log(snapshot.val());
+        }
+    );
+    console.log(requestData);
+    res.send(requestData)
+});
+
+var server = app.listen(8080, function () {
     var host = server.address().address;
     var port = server.address().port;
   
