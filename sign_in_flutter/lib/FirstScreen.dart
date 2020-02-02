@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(HomePage(
+  runApp(FirstScreen(
       items: List<ListItem>.generate(12, (index) =>
           SupplyItem("Name" , "Description", "Sender", "Cost"),
       )
@@ -16,7 +16,7 @@ class FirstScreen extends StatelessWidget {
 
   final icons = [Icons.list, Icons.map, Icons.settings, Icons.person];
   final titles = ['List', 'Map', 'Settings', 'Profile'];
-  HomePage({@required this.items}): super();
+  FirstScreen({@required this.items}): super();
 
   @override
   Widget build(BuildContext context) {
