@@ -16,11 +16,11 @@ api = tweepy.API(auth)
 
 class StdOutListener(StreamListener):
     def on_data(self, data):
-        beg = data.find('"screen_name\":"')
-        last = data.find('","', beg)
+        beg = data.find('"user\":{\"id":')
+        last = data.find(',', beg)
         temp = data[beg:last]
-        final_pos = temp.rindex('":"') + 3
-        final_temp = temp[final_pos:len(temp)]
+        final_temp = temp[13:len(temp)]
+        print(data)
         print(final_temp)
         return True
 
