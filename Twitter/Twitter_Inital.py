@@ -12,8 +12,9 @@ auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
 api = tweepy.API(auth)
 
-api.send_direct_message(1054197561463058434, "What are you experiencing?\n1) Fire\n2) Tornado\n"
-                                             "3) Flood\n4) Heavy Storm\n5) Hurricane")
+api.send_direct_message(1054197561463058434, "Hey! We are sorry to hear that you're in danger but luckily we are here to help. "
+                                             "What are you experiencing right now?\n1) Heavy Storm\n2) Flood\n"
+                                             "3) Hurricane\n4) Fire\n5) Tornado")
 
 messages = api.list_direct_messages()
 
