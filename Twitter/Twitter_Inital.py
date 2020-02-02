@@ -1,5 +1,4 @@
 # DM user after they use our hash tag
-import time
 
 import tweepy
 # Twitter Credentials
