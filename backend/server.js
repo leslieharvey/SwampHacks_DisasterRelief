@@ -20,6 +20,7 @@ app.get('/', function (req, res) {
     firebase.database().ref('/TestMessages').set({TestMessage: 'GET Request'});
 });
 
+//Return a single user by ID
 app.get('/users/:id', function(req, res) {
     var userReference = firebase.database().ref('/users/' + req.params.id).once('value').then(
         function(snapshot) {
@@ -30,15 +31,23 @@ app.get('/users/:id', function(req, res) {
         }
     );
 });
-  
+ 
+//Update user information
 app.put('/', function (req, res) {
     console.log("HTTP Put Request");
     res.send("HTTP PUT Request");
 });
   
-app.post('/', function (req, res) {
-    console.log("HTTP POST Request");
-    res.send("HTTP POST Request");  
+//Create a new user
+app.post('/users', function (req, res) {
+    firebase.database().ref('users/' + req.query.id).set({ 
+       city: req.query.city,
+       state: req.query.state,
+       first_name: req.query.first_name,
+       last_name: req.query.last_name,
+       messages: req.query.messages.split(',')
+    });
+    res.send("New user has been created!");  
 });
   
 app.delete('/', function (req, res) {
